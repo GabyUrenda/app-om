@@ -1,0 +1,61 @@
+@import '../../sass/colors.sass'
+
+.tasks_column
+    width: calc(90%/6)
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+    padding: 10px
+    input, select, textarea
+        min-width: 150px
+    textarea
+        max-width: 100%
+
+.task_column_icon
+    width: 10%
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+    padding: 10px
+
+.row_task_list
+    width: 100%
+    .row
+        align-items: center
+    .task_column_icon
+        display: flex
+        justify-content: flex-end
+
+.row.header
+    font-weight: 600
+    border-bottom: 1px solid $light_grey
+
+.section_add
+    margin: 20px 0px
+    div
+        margin-top:10px
+    input
+        margin-right: 20px
+
+.not-records
+    min-height: 200px
+    padding: 30px
+
+.section_title
+    padding: 10px 10px 0px 10px
+    color: $title_highlighted
+    max-width: 100%
+    justify-content: space-between
+    align-items: center
+
+.margin-right-10
+    margin-right: 10px
+
+.tasks_container
+    padding: 20px
+
+.section_container
+    padding: 10px 10px 20px 10px
+
+.error_fields
+    padding: 10px

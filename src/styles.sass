@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap')
+@import './sass/colors.sass'
+    
+body
+    padding: 0px
+    margin: 0px
+
+* 
+    font-family: 'Montserrat', sans-serif
+    outline-style: none
+
+button.primary
+    background-color: $primary_color
+    border: none
+    border-radius: 5px
+    color: white
+    cursor: pointer
+    padding: 10px
+
+button.icon
+    background-color: $primary_color
+    border: none
+    color: white
+    cursor: pointer
+    padding: 10px
+    border-radius: 30px
+    width: 35px
+    height: 35px
+    font-size: 8px
+
+    &.delete
+        background-color: $alert
+    &.grey
+        background-color: $light_grey
+    &.success
+        background-color: $success
+
+.row 
+    display: flex
+    flex-direction: row
+    width: 100%
+    flex-wrap: wrap
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+.column
+    display: flex
+    flex-direction: column
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+.container
+    padding: 20px
+
+.shadow
+    box-shadow: 0px 1px 10px 1px $shadow_color
+
+input,  select
+    padding: 5px
+    min-height: 25px
+    min-width: 200px
+
+select 
+    height: 39px
+
+::-webkit-input-placeholder
+  color: $light_grey
+
+:-ms-input-placeholder
+  color: $light_grey
+
+::placeholder
+  color: $light_grey
+
+.warning-color
+    color: $warning
+
+.success_color
+    color: $success
+
+.alert_color
+    color: $alert
+
+.field_error 
+    border: 1px solid red
+
+
+
+
