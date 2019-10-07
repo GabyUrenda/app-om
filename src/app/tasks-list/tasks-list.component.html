@@ -15,7 +15,7 @@
         <div>
             <form #sectionForm="ngForm" (ngSubmit)="onAddSection(sectionForm)">
                 <div class="row margin_top_10">
-                    <div class="column">
+                    <div class="column margin_right_20">
                         <input id="newSection" name="newSection" type="text" placeholder="Here is the section name"
                             required maxlength="100" autocomplete="off" [(ngModel)]="newSection"
                             [class.field_error]="sectionForm.submitted && sectionForm.invalid" />
