@@ -8,7 +8,7 @@ import { formatDate } from '@angular/common';
 @Component({
     selector: 'task',
     templateUrl: './task.component.html',
-    styleUrls: ['./task.sass', '../tasks-list.component.sass']
+    styleUrls: ['../tasks-list.component.sass']
 })
 export class TaskComponent {
     today: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');

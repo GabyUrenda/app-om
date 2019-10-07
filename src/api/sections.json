@@ -1,0 +1,103 @@
+[
+    {
+        "id": 1,
+        "name": "ToDo",
+        "creationDate": "2019-08-12",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 1,
+                "name": "ToDo task without begin",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 1,
+                "status": 0,
+                "creationDate": "2019-08-12",
+                "dueDate": "2019-09-12"
+            },
+            {
+                "id": 2,
+                "idSection": 1,
+                "name": "ToDo task completed",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-09-12",
+                "dueDate": "2019-09-12"
+            },
+            {
+                "id": 3,
+                "idSection": 1,
+                "name": "ToDo task in progress",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 2,
+                "status": 1,
+                "creationDate": "2019-10-01",
+                "dueDate": "2019-10-10"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "In progress",
+        "creationDate": "2019-10-03",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 2,
+                "name": "TIn progress task without begin",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 1,
+                "status": 0,
+                "creationDate": "2019-10-01",
+                "dueDate": "2019-10-04"
+            },
+            {
+                "id": 2,
+                "idSection": 2,
+                "name": "ToDo task completed",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-10-02",
+                "dueDate": "2019-10-15"
+            },
+            {
+                "id": 3,
+                "idSection": 1,
+                "name": "ToDo task in progress",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 2,
+                "status": 1,
+                "creationDate": "2019-10-04",
+                "dueDate": "2019-10-20"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Done",
+        "creationDate": "2019-10-03",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 2,
+                "name": "TIn progress task without begin",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 1,
+                "status": 0,
+                "creationDate": "2019-10-03",
+                "dueDate": "2019-10-04"
+            },
+            {
+                "id": 2,
+                "idSection": 2,
+                "name": "ToDo task completed",
+                "description": "This list of task are in the stack to do.",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-10-05",
+                "dueDate": "2019-10-25"
+            }
+        ]
+    }
+]

@@ -59,8 +59,9 @@
         <!-- Inputs -->
         <div class="tasks_column">
             <label class="task_header_movile" for="title"><b>Title</b></label>
-            <input id="title" name="title" type="text" placeholder="Title" required autocomplete="off"
+            <input id="title" name="title" type="text" placeholder="Title" required autocomplete="off" maxlength="150"
                 [(ngModel)]="task.name" [class.field_error]="newTaskForm.submitted && newTaskForm.invalid" />
+            <label class="character_counter"><span [class]="task.name.length > 150 ? 'alert_color' : ''">{{ task.name.length }} / 150 </span> </label>
         </div>
 
         <div class="tasks_column">
@@ -68,7 +69,8 @@
             <textarea id="description" name="description" type="text" placeholder="Description" required
                 autocomplete="off" [(ngModel)]="task.description"
                 [class.field_error]="newTaskForm.submitted && newTaskForm.invalid">
-                </textarea>
+            </textarea>
+            <label class="character_counter"><span [class]="task.description.length > 150 ? 'alert_color' : ''">{{ task.description.length }} / 150 </span> </label>  
         </div>
 
         <div class="tasks_column">

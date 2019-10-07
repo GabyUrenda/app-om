@@ -4,7 +4,7 @@ export interface ITask {
     name: string
     description: string
     assignedTo: number,
-    creationDate: Date,
-    dueDate: Date,
+    creationDate?: Date,
+    dueDate?: Date,
     status: number
 }

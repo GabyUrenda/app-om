@@ -5,6 +5,7 @@ import { IStatus } from './status.interface';
 import { ITeamMember } from './team-member.interface';
 import { ITask } from './task.interface';
 import { style, state, animate, transition, trigger } from '@angular/animations';
+import { SectionService } from './section.service';
 
 
 @Component({
@@ -29,93 +30,7 @@ export class TasksListComponent {
     //today: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     today: Date = new Date();
     newSection: string = '';
-
-    sectionList: ISection[] = [
-        {
-            id: 1,
-            name: 'ToDo',
-            creationDate: new Date(),
-            tasks: [
-                {
-                    id: 1,
-                    idSection: 1,
-                    name: 'ToDo task without begin',
-                    description: 'This list of task are in the stack to do.',
-                    assignedTo: 1,
-                    creationDate: new Date(),
-                    dueDate: new Date(),
-                    status: 0
-                },
-                {
-                    id: 2,
-                    idSection: 1,
-                    name: 'ToDo task completed',
-                    description: 'This list of task are in the stack to do.',
-                    assignedTo: 2,
-                    creationDate: new Date(),
-                    dueDate: new Date(),
-                    status: 2
-                },
-                {
-                    id: 2,
-                    idSection: 1,
-                    name: 'ToDo task in progress',
-                    description: 'This list of task are in the stack to do.',
-                    assignedTo: 2,
-                    creationDate: new Date(),
-                    dueDate: new Date(),
-                    status: 1
-                }
-            ]
-        },
-        {
-            id: 2,
-            name: 'InProgress',
-            creationDate: new Date(),
-            tasks: [
-                {
-                    id: 1,
-                    idSection: 2,
-                    name: 'InProgress task',
-                    description: 'This list of task are in progress.',
-                    assignedTo: 3,
-                    creationDate: new Date(),
-                    dueDate: new Date(),
-                    status: 1
-                }
-            ]
-        },
-        {
-            id: 3,
-            name: 'Done',
-            creationDate: new Date(),
-            tasks: [
-                {
-                    id: 1,
-                    idSection: 3,
-                    name: 'Done',
-                    description: 'This list of task are done.',
-                    assignedTo: 4,
-                    creationDate: new Date(),
-                    dueDate: new Date(),
-                    status: 1
-                }
-            ]
-        }
-    ];
-    status: IStatus[] = [
-        { id: 0, name: 'Without starting' },
-        { id: 1, name: 'In progress' },
-        { id: 2, name: 'Completed' }
-    ];
-
-    teamMembers: ITeamMember[] = [
-        { id: 1, name: 'Gabriela Urenda' },
-        { id: 2, name: 'Billy Joe' },
-        { id: 3, name: 'Debbie Harry' },
-        { id: 4, name: 'Davey Havok' }
-    ]
-
+    errorMessage: string = '';
     modal = {
         title: 'Delete',
         body: 'Are you sure you want to delete this item?',
@@ -123,6 +38,29 @@ export class TasksListComponent {
         cancelBtn: 'Cancel',
         show: false,
         params: {}
+    };
+
+    sectionList: ISection[] = [];
+    status: IStatus[] = [];
+    teamMembers: ITeamMember[] = [];
+
+    constructor(private sectionService: SectionService) { }
+
+    ngOnInit() {
+        this.sectionService.getStatus().subscribe({
+            next: statusList => { this.status = statusList;},
+            error: err => this.errorMessage = err
+        });
+
+        this.sectionService.getSectionList().subscribe({
+            next: statusList => { this.sectionList = statusList;},
+            error: err => this.errorMessage = err
+        });
+
+        this.sectionService.getTeamMembers().subscribe({
+            next: teamMembers => { this.teamMembers = teamMembers},
+            error: err => this.errorMessage = err
+        });
     }
 
 
