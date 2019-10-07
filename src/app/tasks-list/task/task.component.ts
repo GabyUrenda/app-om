@@ -14,7 +14,7 @@ export class TaskComponent {
     today: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
     editing: boolean = false;
     adding: boolean = false;
-
+    originalTask: ITask;
 
     @Input() task: ITask;
     @Input() teamMembers: ITeamMember[];
@@ -24,35 +24,38 @@ export class TaskComponent {
     @Output() taskAdd: EventEmitter<ITask> = new EventEmitter<ITask>();
     @Output() taskDelete: EventEmitter<ITask> = new EventEmitter<ITask>();
 
-    onCancelTask () {
+    onCancelTask() {
         this.editing = false;
-        if(this.task.id == null) {
+        if (this.task.id == null) {
             this.taskDelete.emit(this.task);
-        };
+        } else {
+            this.task = this.originalTask;
+        }
     }
 
-    onAddClick (taskForm: NgForm) {
-        if(taskForm.valid) {
+    onAddClick(taskForm: NgForm) {
+        if (taskForm.valid) {
             this.taskAdd.emit(this.task);
             this.editing = false;
         };
     }
 
-    onDeleteClick () {
+    onDeleteClick() {
         this.taskDelete.emit(this.task);
     }
 
-    onStartEdit () {
+    onStartEdit() {
         this.editing = !this.editing;
+        this.originalTask =  Object.assign({}, this.task);
     }
 
-    getStatusTitle (id: number) {
-        let status = this.status.filter(status => { return status.id == id});
+    getStatusTitle(id: number) {
+        let status = this.status.filter(status => { return status.id == id });
         return status[0].name || '';
     }
 
-    getTeamMemberName (id: number) {
-        let status = this.teamMembers.filter(teamMember => { return teamMember.id == id});
+    getTeamMemberName(id: number) {
+        let status = this.teamMembers.filter(teamMember => { return teamMember.id == id });
         return status[0].name || '';
     }
 

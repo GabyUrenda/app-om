@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap')
 @import './sass/colors.sass'
-    
+
 body
     padding: 0px
     margin: 0px
 
-* 
+*
     font-family: 'Montserrat', sans-serif
     outline-style: none
 
@@ -24,7 +24,6 @@ button.cancel
     color: white
     cursor: pointer
     padding: 10px
-
 
 button.icon
     background-color: $primary_color
@@ -47,7 +46,7 @@ button.icon
         background-color: $alert
         padding: 5px 10px
 
-.row 
+.row
     display: flex
     flex-direction: row
     width: 100%
@@ -72,15 +71,22 @@ button.icon
 
 input,  select
     padding: 5px
-    min-height: 25px
+    min-height: 39px
     min-width: 200px
+    width: 100%
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
 
-select 
+select
     height: 39px
 
 textarea
     padding: 5px 5px 0px 5px
     min-height: 25px
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
 
 .character_counter
     display: flex
@@ -90,32 +96,30 @@ textarea
     color: darkgray
 
 ::-webkit-input-placeholder
-  color: $light_grey
+    color: $light_grey
 
 :-ms-input-placeholder
-  color: $light_grey
+    color: $light_grey
 
 ::placeholder
-  color: $light_grey
+    color: $light_grey
 
+::-webkit-scrollbar
+    width: 10px
 
-::-webkit-scrollbar 
-  width: 10px
+::-webkit-scrollbar-track
+    box-shadow: inset 0 0 5px $shadow_color
+    border-radius: 10px
 
-::-webkit-scrollbar-track 
-  box-shadow: inset 0 0 5px $shadow_color
-  border-radius: 10px
-
-::-webkit-scrollbar-thumb 
-  background: $scroll_color_primary
-  border-radius: 10px
+::-webkit-scrollbar-thumb
+    background: $scroll_color_primary
+    border-radius: 10px
 
 /** Firefox **/
 html
     scrollbar-color: $scroll_color_primary $scroll_color_secondary
     scrollbar-width: thin
     scroll-behavior: smooth
-
 
 .warning-color
     color: $warning
@@ -126,13 +130,10 @@ html
 .alert_color
     color: $alert
 
-.field_error 
+.field_error
     border: 1px solid red
 
-.divider 
+.divider
     background-color: lightgray
     height: 1px
     margin: 10px
-
-
-

@@ -39,7 +39,7 @@ export class TasksListComponent {
         show: false,
         params: {}
     };
-
+    sectionListFromDB: ISection[] = [];
     sectionList: ISection[] = [];
     status: IStatus[] = [];
     teamMembers: ITeamMember[] = [];
@@ -48,17 +48,17 @@ export class TasksListComponent {
 
     ngOnInit() {
         this.sectionService.getStatus().subscribe({
-            next: statusList => { this.status = statusList;},
+            next: statusList => { this.status = statusList; },
             error: err => this.errorMessage = err
         });
 
         this.sectionService.getSectionList().subscribe({
-            next: statusList => { this.sectionList = statusList;},
+            next: statusList => { this.sectionList = statusList; this.sectionListFromDB = statusList.slice(0); },
             error: err => this.errorMessage = err
         });
 
         this.sectionService.getTeamMembers().subscribe({
-            next: teamMembers => { this.teamMembers = teamMembers},
+            next: teamMembers => { this.teamMembers = teamMembers },
             error: err => this.errorMessage = err
         });
     }
@@ -69,8 +69,8 @@ export class TasksListComponent {
     }
 
     onShowTasks(section: any) {
+        section.show = !section.show;
         if (section.tasks.length > 0) {
-            section.show = !section.show;
 
             //Clean all the task without id
             let sectionsToDelete = 0;
@@ -97,21 +97,23 @@ export class TasksListComponent {
     }
 
     onAddSection(sectionForm: NgForm) {
+        console.log(this.sectionListFromDB);
         if (sectionForm.valid) {
-            const id = this.sectionList[this.sectionList.length - 1].id + 1;
+            const id =  this.sectionListFromDB[this.sectionListFromDB.length - 1].id + 1;
             this.sectionList.push({ id, name: sectionForm.form.value.newSection, creationDate: this.today, tasks: [] });
         };
     }
 
     onShowToAddTask(section: any) {
-        section.tasks.push({ id: null, idSection: section.id, name: '', description: '', assignedTo: this.teamMembers[0].id, creationDate: this.today, dueDate: this.today, status: 0 });
-        section.show = true;
+        if(section.tasks.length === 0 || section.tasks[section.tasks.length - 1].id !== null ) {
+            section.tasks.push({ id: null, idSection: section.id, name: '', description: '', assignedTo: this.teamMembers[0].id, creationDate: this.today, dueDate: this.today, status: 0 });
+            section.show = true;
+        };
     }
 
     onAddTask(taskAdd: ITask) {
         const section = this.sectionList.find(section => { return section.id === taskAdd.idSection });
         section.tasks[section.tasks.length - 1].id = section.tasks[section.tasks.length - 2] ? section.tasks[section.tasks.length - 2].id + 1 : 1;
-
     }
 
     onDeleteTaskModal(taskDelete: ITask) {

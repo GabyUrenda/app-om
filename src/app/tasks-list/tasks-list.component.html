@@ -14,10 +14,15 @@
         <label>New Section</label>
         <div>
             <form #sectionForm="ngForm" (ngSubmit)="onAddSection(sectionForm)">
-                <div class="row">
-                    <input id="newSection" name="newSection" type="text" placeholder="Here is the section name" required
-                        autocomplete="off" [(ngModel)]="newSection"
-                        [class.field_error]="sectionForm.submitted && sectionForm.invalid" />
+                <div class="row margin_top_10">
+                    <div class="column">
+                        <input id="newSection" name="newSection" type="text" placeholder="Here is the section name"
+                            required maxlength="100" autocomplete="off" [(ngModel)]="newSection"
+                            [class.field_error]="sectionForm.submitted && sectionForm.invalid" />
+                        <label class="character_counter section">
+                            <span [class]="newSection.length > 150 ? 'alert_color' : ''">{{ newSection.length }} / 100</span> 
+                        </label>
+                    </div>
 
                     <button class="primary">Add</button>
                 </div>
@@ -110,7 +115,9 @@
                         </div>
                         <div class="task_column_icon add_task">
                             <!-- Add -->
-                            <button (click)="onShowToAddTask(section)" class="icon margin-right-10" title="Add Task">
+                            <button (click)="onShowToAddTask(section)"
+                                [class]="section.tasks.length > 0 && section.tasks[section.tasks.length - 1].id === null ? 'icon margin-right-10 grey' : 'icon margin-right-10'"
+                                title="Add Task">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus"
                                     class="svg-inline--fa fa-plus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 448 512">

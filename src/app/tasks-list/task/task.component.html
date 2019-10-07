@@ -66,11 +66,11 @@
 
         <div class="tasks_column">
             <label class="task_header_movile" for="description"><b>Description</b></label>
-            <textarea id="description" name="description" type="text" placeholder="Description" required
+            <textarea id="description" name="description" type="text" placeholder="Description" required maxlength="250"
                 autocomplete="off" [(ngModel)]="task.description"
                 [class.field_error]="newTaskForm.submitted && newTaskForm.invalid">
             </textarea>
-            <label class="character_counter"><span [class]="task.description.length > 150 ? 'alert_color' : ''">{{ task.description.length }} / 150 </span> </label>  
+            <label class="character_counter"><span [class]="task.description.length > 150 ? 'alert_color' : ''">{{ task.description.length }} / 250 </span> </label>  
         </div>
 
         <div class="tasks_column">
