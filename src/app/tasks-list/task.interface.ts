@@ -1,9 +1,10 @@
 export interface ITask {
     id: number,
+    idSection: number,
     name: string
     description: string
-    assignedTo: string
-    creationDate: string,
-    dueDate: string
+    assignedTo: number,
+    creationDate?: Date,
+    dueDate?: Date,
     status: number
 }

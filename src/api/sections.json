@@ -1,0 +1,103 @@
+[
+    {
+        "id": 1,
+        "name": "Urgent",
+        "creationDate": "2019-08-12",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 1,
+                "name": "Schedule meeting",
+                "description": "You have to call to our client and schedule a meeting",
+                "assignedTo": 3,
+                "status": 0,
+                "creationDate": "2019-08-12",
+                "dueDate": "2019-09-12"
+            },
+            {
+                "id": 2,
+                "idSection": 1,
+                "name": "Meeting",
+                "description": "Have the meeting for the definition of requirements and project scope",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-09-12",
+                "dueDate": "2019-09-12"
+            },
+            {
+                "id": 3,
+                "idSection": 1,
+                "name": "Requirements docs",
+                "description": "Write the requirements in the indicated format",
+                "assignedTo": 2,
+                "status": 1,
+                "creationDate": "2019-10-01",
+                "dueDate": "2019-10-10"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Important",
+        "creationDate": "2019-10-03",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 2,
+                "name": "Testing",
+                "description": "Check testing activities of project A",
+                "assignedTo": 1,
+                "status": 0,
+                "creationDate": "2019-10-01",
+                "dueDate": "2019-10-04"
+            },
+            {
+                "id": 2,
+                "idSection": 2,
+                "name": "Close project B",
+                "description": "Schedule a call with the client to close his project",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-10-02",
+                "dueDate": "2019-10-15"
+            },
+            {
+                "id": 3,
+                "idSection": 2,
+                "name": "Project X",
+                "description": "Generate activities for the next project",
+                "assignedTo": 2,
+                "status": 1,
+                "creationDate": "2019-10-04",
+                "dueDate": "2019-10-20"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Can Wait",
+        "creationDate": "2019-10-03",
+        "tasks": [
+            {
+                "id": 1,
+                "idSection": 3,
+                "name": "Interviews",
+                "description": "Start interviews with candidates.",
+                "assignedTo": 4,
+                "status": 0,
+                "creationDate": "2019-10-03",
+                "dueDate": "2019-10-04"
+            },
+            {
+                "id": 2,
+                "idSection": 3,
+                "name": "Travel to Mexico",
+                "description": "Visit the client of Mexico and present project schedule",
+                "assignedTo": 2,
+                "status": 2,
+                "creationDate": "2019-10-05",
+                "dueDate": "2019-10-25"
+            }
+        ]
+    }
+]

@@ -7,9 +7,10 @@
     box-sizing: border-box
     padding: 10px
     input, select, textarea
-        min-width: 150px
+        min-width: 100%
     textarea
         max-width: 100%
+        min-width: 100%
 
 .task_column_icon
     width: 10%
@@ -17,6 +18,8 @@
     -moz-box-sizing: border-box
     box-sizing: border-box
     padding: 10px
+    display: flex
+    justify-content: space-around
 
 .row_task_list
     width: 100%
@@ -26,16 +29,15 @@
         display: flex
         justify-content: flex-end
 
-.row.header
+.row.task_header
     font-weight: 600
     border-bottom: 1px solid $light_grey
 
 .section_add
     margin: 20px 0px
-    div
-        margin-top:10px
-    input
-        margin-right: 20px
+
+.section_row
+    overflow-y: hidden
 
 .not-records
     min-height: 200px
@@ -45,8 +47,12 @@
     padding: 10px 10px 0px 10px
     color: $title_highlighted
     max-width: 100%
-    justify-content: space-between
     align-items: center
+    div 
+       width: calc(100%/3)
+    .action_buttons
+        display: flex
+        justify-content: flex-end
 
 .margin-right-10
     margin-right: 10px
@@ -59,3 +65,40 @@
 
 .error_fields
     padding: 10px
+
+.task_column_icon.add_task
+    justify-content: flex-end
+.add_task
+    .icon
+        margin-right: 13px
+
+.task_header_movile
+    display: none
+
+.tasks_empty
+    padding: 20px
+
+.margin_top_10
+    margin-top: 10px
+
+.margin_right_20
+    margin-right: 20px
+
+@media (max-width: 860px)
+    .task_header .tasks_column
+        display: none
+    .tasks_column, .task_column_icon
+        flex-direction: row
+        width: 100%
+    .task_header_movile
+        display: flex
+    .section_title
+        div
+            width: 100%
+            margin-bottom: 10px
+        .action_buttons
+            justify-content: flex-start
+    .add_task
+        .icon
+            margin-right: 0px
+

@@ -1,0 +1,5 @@
+[
+    { "id": 0, "name": "Without starting" },
+    { "id": 1, "name": "In progress" },
+    { "id": 2, "name": "Completed" }
+]
