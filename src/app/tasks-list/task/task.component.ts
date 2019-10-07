@@ -51,4 +51,9 @@ export class TaskComponent {
         return status[0].name || '';
     }
 
+    getTeamMemberName (id: number) {
+        let status = this.teamMembers.filter(teamMember => { return teamMember.id == id});
+        return status[0].name || '';
+    }
+
 }

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TasksListComponent } from './tasks-list.component';
 import { TasksListRoutingModule } from './tasks-list-routing.module';
 import { TaskComponent } from './task/task.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations : [
@@ -16,7 +17,8 @@ import { TaskComponent } from './task/task.component';
         BrowserAnimationsModule,
         CommonModule,
         FormsModule,
-        TasksListRoutingModule
+        TasksListRoutingModule,
+        SharedModule
     ]
 })
 

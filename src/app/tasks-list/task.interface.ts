@@ -3,7 +3,7 @@ export interface ITask {
     idSection: number,
     name: string
     description: string
-    assignedTo: string
+    assignedTo: number,
     creationDate: Date,
     dueDate: Date,
     status: number

@@ -14,11 +14,11 @@ import { style, state, animate, transition, trigger } from '@angular/animations'
         trigger('enterLeaveAnimation', [
             transition(':enter', [
                 style({ height: 0, opacity: 0 }),
-                animate('2s ease-out', style({ height: '{{height}}', opacity: 1 }))
+                animate('1s ease-out', style({ height: '*', opacity: 1 }))
             ]),
-            transition(':leave',[
-                style({ height: '{{height}}', opacity: 1 }),
-                animate('2s ease-in', style({ height: 0, opacity: 0 }))
+            transition(':leave', [
+                style({ height: '*', opacity: 1 }),
+                animate('1s ease-in', style({ height: 0, opacity: 0 }))
             ])
         ])
     ]
@@ -41,7 +41,7 @@ export class TasksListComponent {
                     idSection: 1,
                     name: 'ToDo task without begin',
                     description: 'This list of task are in the stack to do.',
-                    assignedTo: 'Gabriela Urenda',
+                    assignedTo: 1,
                     creationDate: new Date(),
                     dueDate: new Date(),
                     status: 0
@@ -51,7 +51,7 @@ export class TasksListComponent {
                     idSection: 1,
                     name: 'ToDo task completed',
                     description: 'This list of task are in the stack to do.',
-                    assignedTo: 'Gabriela Urenda',
+                    assignedTo: 2,
                     creationDate: new Date(),
                     dueDate: new Date(),
                     status: 2
@@ -61,7 +61,7 @@ export class TasksListComponent {
                     idSection: 1,
                     name: 'ToDo task in progress',
                     description: 'This list of task are in the stack to do.',
-                    assignedTo: 'Gabriela Urenda',
+                    assignedTo: 2,
                     creationDate: new Date(),
                     dueDate: new Date(),
                     status: 1
@@ -78,7 +78,7 @@ export class TasksListComponent {
                     idSection: 2,
                     name: 'InProgress task',
                     description: 'This list of task are in progress.',
-                    assignedTo: 'Gabriela Urenda',
+                    assignedTo: 3,
                     creationDate: new Date(),
                     dueDate: new Date(),
                     status: 1
@@ -95,7 +95,7 @@ export class TasksListComponent {
                     idSection: 3,
                     name: 'Done',
                     description: 'This list of task are done.',
-                    assignedTo: 'Gabriela Urenda',
+                    assignedTo: 4,
                     creationDate: new Date(),
                     dueDate: new Date(),
                     status: 1
@@ -111,17 +111,23 @@ export class TasksListComponent {
 
     teamMembers: ITeamMember[] = [
         { id: 1, name: 'Gabriela Urenda' },
-        { id: 1, name: 'Jonh Doe' },
-        { id: 1, name: 'Jack Daniels' },
+        { id: 2, name: 'Billy Joe' },
+        { id: 3, name: 'Debbie Harry' },
+        { id: 4, name: 'Davey Havok' }
     ]
+
+    modal = {
+        title: 'Delete',
+        body: 'Are you sure you want to delete this item?',
+        okBtn: 'Delete',
+        cancelBtn: 'Cancel',
+        show: false,
+        params: {}
+    }
+
 
     getTaskCount(section: any, status: number) {
         return section.tasks.filter(task => { return task.status === status; }).length;
-    }
-
-    getHeight(event: any) {
-        console.log(this);
-        return '500px';
     }
 
     onShowTasks(section: any) {
@@ -141,6 +147,12 @@ export class TasksListComponent {
         };
     }
 
+    onDeleteSectionModal(section: any) {
+        this.modal.title = `Delete section "${section.name}"`
+        this.modal.params = { action: 'deleteSection', section }
+        this.modal.show = true;
+    }
+
     onDeleteSection(section: any) {
         let index = this.sectionList.findIndex(task => { return task.id === section.id; });
         this.sectionList.splice(index, 1);
@@ -154,10 +166,9 @@ export class TasksListComponent {
     }
 
     onShowToAddTask(section: any) {
-        section.tasks.push({ id: null, idSection: section.id, name: '', description: '', assignedTo: this.teamMembers[0].name, creationDate: this.today, dueDate: this.today, status: 0 });
+        section.tasks.push({ id: null, idSection: section.id, name: '', description: '', assignedTo: this.teamMembers[0].id, creationDate: this.today, dueDate: this.today, status: 0 });
         section.show = true;
     }
-
 
     onAddTask(taskAdd: ITask) {
         const section = this.sectionList.find(section => { return section.id === taskAdd.idSection });
@@ -165,14 +176,35 @@ export class TasksListComponent {
 
     }
 
+    onDeleteTaskModal(taskDelete: ITask) {
+        if (taskDelete.id === null) {
+            this.onDeleteTask(taskDelete);
+            return;
+        };
+
+        this.modal.title = `Delete task "${taskDelete.name}"`;
+        this.modal.params = { action: 'deleteTask', task: taskDelete };
+        this.modal.show = true;
+
+    }
 
     onDeleteTask(taskDelete: ITask) {
         const section = this.sectionList.find(section => { return section.id === taskDelete.idSection });
         const index = section.tasks.findIndex(task => { return task.id === taskDelete.id });
         section.tasks.splice(index, 1);
-
-        section.show = section.tasks.length === 0 ? false : section.show;
     }
 
+    onModalContinue(params: any) {
+        this.modal.show = false;
+        if (params.action === 'deleteSection') {
+            this.onDeleteSection(params.section);
+        } else if (params.action === 'deleteTask') {
+            this.onDeleteTask(params.task);
+        };
+    }
+
+    onModalCancel() {
+        this.modal.show = false;
+    }
 
 }

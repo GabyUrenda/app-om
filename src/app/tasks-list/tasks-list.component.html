@@ -1,3 +1,10 @@
+<!-- Modal -->
+<modal [title]="modal.title" [body]="modal.title" [okBtn]="modal.okBtn" [cancelBtn]="modal.cancelBtn"
+    [showModal]="modal.show" [params]="modal.params" (onContinue)="onModalContinue($event)"
+    (onCancel)="onModalCancel($event)">
+</modal>
+
+<!-- Page content -->
 <div class="container">
     <!-- Header -->
     <h2>{{title}}</h2>
@@ -46,7 +53,8 @@
                     <!-- Action buttons -->
                     <div class="action_buttons">
                         <!-- Delete -->
-                        <button (click)="onDeleteSection(section)" class="icon delete margin-right-10" title="Delete">
+                        <button (click)="onDeleteSectionModal(section)" class="icon delete margin-right-10"
+                            title="Delete">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus"
                                 class="svg-inline--fa fa-minus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512">
@@ -56,8 +64,8 @@
                             </svg>
                         </button>
 
-                        <button [class]="section.tasks.length > 0 ? 'icon' : 'icon grey'" title="Show tasks"
-                            (click)="onShowTasks(section)">
+                        <!-- Show tasks -->
+                        <button class="icon" title="Show tasks" (click)="onShowTasks(section)">
                             <svg *ngIf="!section.show" aria-hidden="true" focusable="false" data-prefix="fas"
                                 data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -79,7 +87,7 @@
                 </div>
 
                 <!-- Tasks -->
-                <div *ngIf="section.tasks.length > 0 && section.show" [@enterLeaveAnimation]="{params: {height: (section.tasks.length) * 70 + 'px' }}" class="tasks_container">
+                <div *ngIf="section.show" [@enterLeaveAnimation] class="tasks_container">
                     <!-- Header -->
                     <div class="row task_header">
                         <div class="tasks_column">
@@ -115,15 +123,21 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="row body">
+                    <div class="row body" *ngIf="section.tasks.length > 0">
                         <!-- tasks -->
                         <div *ngFor="let task of section.tasks" class="row_task_list">
                             <!-- Task Component -->
                             <task [task]="task" [teamMembers]="teamMembers" [status]="status"
-                                (taskAdd)="onAddTask($event)" (taskDelete)="onDeleteTask($event)">
+                                (taskAdd)="onAddTask($event)" (taskDelete)="onDeleteTaskModal($event)">
                             </task>
                         </div>
                     </div>
+
+                    <!-- No tasks -->
+                    <div class="row body tasks_empty" *ngIf="section.tasks.length === 0">
+                        You don't have any task, add one to start!
+                    </div>
+
                 </div>
 
             </div>
