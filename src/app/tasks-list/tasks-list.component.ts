@@ -86,9 +86,10 @@ export class TasksListComponent {
     }
 
     onDeleteSectionModal(section: any) {
-        this.modal.title = `Delete section "${section.name}"`
-        this.modal.params = { action: 'deleteSection', section }
+        this.modal.title = `Delete section "${section.name}"`;
+        this.modal.params = { action: 'deleteSection', section };
         this.modal.show = true;
+        this.modal.body = `Are you sure you want to delete the section "${section.name}"? All tasks will be deleted with it`;
     }
 
     onDeleteSection(section: any) {
@@ -125,7 +126,7 @@ export class TasksListComponent {
         this.modal.title = `Delete task "${taskDelete.name}"`;
         this.modal.params = { action: 'deleteTask', task: taskDelete };
         this.modal.show = true;
-
+        this.modal.body = `Are you sure you want to delete the task "${taskDelete.name}"?`;
     }
 
     onDeleteTask(taskDelete: ITask) {
